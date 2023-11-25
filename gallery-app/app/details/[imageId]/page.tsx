@@ -1,15 +1,41 @@
 import ImageDetail from '@/screens/image-details'
+import { BASE_URL } from '@/services/constant';
 
-const Mock_Details = {
-  imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  imageId: "abc"
-};
+type TImageDetail = {
+  imageId: string
+}
 
-const Page = () => {
+interface IPageServerProps {
+  params: TImageDetail
+}
+
+async function getData(imageId: string) {
+  const response = await fetch(
+    `${BASE_URL}/images/detail/${imageId}`,
+    {
+      method: 'GET',
+      headers: {
+        'Accept': 'json/applications',
+        'Content-Type': 'json/applications'
+      }
+    }
+  );
+
+  if (!response.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+
+  return response.json();
+}
+
+const Page = async (props: IPageServerProps) => {
+  const detail = await getData(props?.params?.imageId);
+
   return (
     <ImageDetail
-      imageId={Mock_Details.imageId}
-      imageUrl={Mock_Details.imageUrl}
+      imageId={detail?.data._id}
+      imageUrl={detail?.data.imageUrl}
     />
   )
 }

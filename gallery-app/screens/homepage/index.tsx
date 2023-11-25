@@ -1,40 +1,33 @@
-import { Box } from '@chakra-ui/react'
+"use client"
+import { Box, Spinner } from '@chakra-ui/react'
 
 import CardImage from '@/components/card-image'
+import useAction from './actions'
 
 type IImages = {
   owner: string
-  imageId: string
+  _id: string
   imageUrl: string
 }
 
-const List_Image: IImages[] = [
-  {
-    owner: "",
-    imageId: "abc",
-    imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-  },
-  {
-    owner: "",
-    imageId: "abc",
-    imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-  },
-  {
-    owner: "",
-    imageId: "abc",
-    imageUrl: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-  },
-];
-
 const Page = () => {
+  const { images, isLoading } = useAction();
+
+  if (isLoading) {
+    return (
+      <Box width="100%" height="80vh" display="flex" justifyContent="center" alignItems="center">
+        <Spinner />
+      </Box>
+    )
+  }
   return (
     <Box display="grid" gridTemplateColumns="auto auto" columnGap={6} rowGap={6}>
-      {List_Image.map(
-        ({ imageId, imageUrl, owner }: IImages, key) => (
+      {images.map(
+        ({ _id, imageUrl, owner }: IImages, key) => (
           <CardImage
             owner={owner}
             key={key}
-            imageId={imageId}
+            imageId={_id}
             imageUrl={imageUrl}
           />
         )

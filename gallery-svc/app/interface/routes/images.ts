@@ -26,6 +26,36 @@ const ImagesController = () => {
     }
   };
 
+  const getImageById = async (req: Request, res: Response) => {
+    const imageId = req?.params?.id;
+
+    try {
+      const rows = await Images.findOne({ _id: imageId});
+
+      if (!rows) {
+        throw new Error("Image not found");
+      }
+
+      const data = {
+        uptime: process.uptime(),
+        message: 'Ok',
+        data: rows,
+        date: new Date()
+      };
+
+      return res.status(200).send(data);
+    } catch (err: any) {
+      const data = {
+        uptime: process.uptime(),
+        message: 'Ok',
+        error: err?.message,
+        date: new Date()
+      };
+
+      return res.status(400).send(data);
+    }
+  }
+
   const addImages = async (req: Request, res: Response) => {
     const newImagesData = {
       owner: req?.body?.username,
@@ -58,6 +88,7 @@ const ImagesController = () => {
   }
 
   router.get('/', getImages)
+  router.get('/detail/:id', getImageById);
   router.post('/add', addImages);
 
   return router;
