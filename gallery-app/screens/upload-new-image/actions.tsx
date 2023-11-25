@@ -47,7 +47,7 @@ const useAction = () => {
     if (!imageDetail.description || !imageDetail.username || !filePreview) {
       return;
     }
-    
+
     const cloudName = process?.env?.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME;
 
     const data = new FormData();
@@ -71,10 +71,19 @@ const useAction = () => {
         imageUrl: response?.url
       })
 
-      if (!err && responseUpload) {
+      if (!err && !responseUpload?.error) {
         toast({
           title: 'Image Uploaded',
           status: 'success',
+          duration: 1500,
+          isClosable: true,
+        })
+      }
+
+      if (responseUpload?.error || err) {
+        toast({
+          title: 'Image Failed Upload',
+          status: 'error',
           duration: 1500,
           isClosable: true,
         })
