@@ -11,15 +11,15 @@ interface ICommentProps {
   imageId: string
 }
 const Component:FC<ICommentProps> = (props) => {
-  const { comments } = useAction({ imageId: props?.imageId });
+  const { comments, newComment, onChange, onEnter } = useAction({ imageId: props?.imageId });
 
   return (
     <Box position={"relative"} marginBottom={20}>
       <Box height={300} overflow="scroll">
         <Text fontSize={32}>Comments</Text>
         {!!comments?.length ? comments.map(
-          ({ userName, comment: text, createdAt }) => (
-            <Box display="grid" gridTemplateColumns="50px auto" margin="10px 0px">
+          ({ userName, comment: text, createdAt }, key) => (
+            <Box key={key} display="grid" gridTemplateColumns="50px auto" margin="10px 0px">
               <Box width={30} height={30} borderRadius="30" backgroundColor="gray" display="flex" justifyContent={"center"} alignItems={"center"}>
                 <Text fontSize={12} textAlign="center" color="white">M</Text>
               </Box>
@@ -40,7 +40,14 @@ const Component:FC<ICommentProps> = (props) => {
           </Box>
         )}
       </Box>
-      <Input marginTop={2} borderRadius={20} placeholder='comment...' />
+      <Input
+        value={newComment}
+        onChange={onChange}
+        onKeyDown={onEnter}
+        marginTop={2}
+        borderRadius={20}
+        placeholder='comment...'
+      />
     </Box>
   )
 }

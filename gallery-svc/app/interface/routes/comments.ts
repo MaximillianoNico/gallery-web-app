@@ -32,7 +32,7 @@ const CommentController = () => {
     } catch (err: any) {
       const data = {
         uptime: process.uptime(),
-        message: 'Ok',
+        message: 'Error',
         error: err?.message,
         date: new Date()
       };
