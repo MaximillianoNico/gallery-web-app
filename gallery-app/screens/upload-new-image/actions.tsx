@@ -42,12 +42,12 @@ const useAction = () => {
   }
 
   const onSubmit = async () => {
-    const cloudName = process?.env?.NEXT_CLOUDINARY_CLOUDNAME;
+    const cloudName = process?.env?.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME;
 
     const data = new FormData();
     if (file) data.append("file", file);
     
-    data.append("upload_preset", process?.env?.NEXT_CLOUDINARY_UPLOADPRESET ?? "");
+    data.append("upload_preset", process?.env?.NEXT_PUBLIC_CLOUDINARY_UPLOADPRESET ?? "");
 
     try {
       const request = await fetch(

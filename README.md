@@ -13,6 +13,11 @@ We using
 
 ## How to running the application locally
 
+## Running Both Apps by Docker Compose
+- install docker-compose
+- run `docker-compose up -d && cd ./gallery-app && yarn dev`
+- then you can accesst
+
 ### Frontend
 - you can go to `gallery-app`
 - then you update the .env file
