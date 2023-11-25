@@ -21,7 +21,7 @@ const Page = () => {
     )
   }
   return (
-    <Box display="grid" gridTemplateColumns="auto auto" columnGap={6} rowGap={6}>
+    <Box display="grid" gridTemplateColumns="auto auto" marginBottom={16} columnGap={6} rowGap={6}>
       {images.map(
         ({ _id, imageUrl, owner }: IImages, key) => (
           <CardImage
