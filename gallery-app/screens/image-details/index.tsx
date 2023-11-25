@@ -20,6 +20,7 @@ const Page:FC<IImageDetail> = (props) => {
         display="grid"
         gridTemplateColumns={{
           xl: "50% 50%",
+          md: "50% 50%",
           base: "auto"
         }}
         columnGap={6}
