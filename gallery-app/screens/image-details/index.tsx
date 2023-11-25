@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { Image, Box, Text, Show } from '@chakra-ui/react'
+import { Image, Box, Show } from '@chakra-ui/react'
 import ButtonBack from '@/components/button-back';
+import Comments from './partials/comment';
 
 interface IImageDetail {
   imageUrl: string;
@@ -32,38 +33,7 @@ const Page:FC<IImageDetail> = (props) => {
             borderRadius='lg'
           />
         </Box>
-        <Box>
-          <Text fontSize={32}>Comments</Text>
-          <Box display="grid" gridTemplateColumns="50px auto" margin="10px 0px">
-            <Box width={30} height={30} borderRadius="30" backgroundColor="gray" display="flex" justifyContent={"center"} alignItems={"center"}>
-              <Text fontSize={12} textAlign="center" color="white">M</Text>
-            </Box>
-            <Box>
-              <Box display={"flex"}>
-                <Text fontSize={14} fontWeight="bold">Username</Text>
-                <Text marginLeft={2} fontSize={14}>Test</Text>
-              </Box>
-              <Box>
-                <Text fontSize={12}>1 day ago</Text>
-              </Box>
-            </Box>
-          </Box>
-
-          <Box display="grid" gridTemplateColumns="50px auto" margin="10px 0px">
-            <Box width={30} height={30} borderRadius="30" backgroundColor="gray" display="flex" justifyContent={"center"} alignItems={"center"}>
-              <Text fontSize={12} textAlign="center" color="white">M</Text>
-            </Box>
-            <Box>
-              <Box display={"flex"}>
-                <Text fontSize={14} fontWeight="bold">Username</Text>
-                <Text marginLeft={2} fontSize={14}>Test</Text>
-              </Box>
-              <Box>
-                <Text fontSize={12}>1 day ago</Text>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
+        <Comments />
       </Box>
     </Box>
   )

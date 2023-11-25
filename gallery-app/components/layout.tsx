@@ -36,6 +36,7 @@ const NavBarDesktop: FC<INavBar> = (props) => {
 const StickyNavBar: FC<INavBar> = (props) => {
   return (
     <Box
+      borderTop="1px solid #D9D9D9"
       display="grid"
       gridTemplateColumns="auto auto"
       position="absolute"
