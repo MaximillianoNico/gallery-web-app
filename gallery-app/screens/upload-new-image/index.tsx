@@ -7,6 +7,7 @@ import useAction from './actions';
 
 const Screen = () => {
   const {
+    isLoading,
     filePreview,
     imageDetail,
     onChange,
@@ -14,6 +15,7 @@ const Screen = () => {
     onSubmit
   } = useAction();
 
+  console.log('disabled: ', !imageDetail.description || !imageDetail.username || !filePreview)
   return (
     <Box>
       <Show breakpoint='(max-width: 400px)'>
@@ -65,7 +67,13 @@ const Screen = () => {
         </Box>
       </Box>
       <Box display="flex" justifyContent="center" marginTop={10}>
-        <Button onClick={onSubmit} colorScheme='teal' size='lg' width="100%">
+        <Button
+          isLoading={isLoading}
+          disabled={!imageDetail.description || !imageDetail.username || !filePreview}
+          onClick={onSubmit}
+          colorScheme={(!imageDetail.description || !imageDetail.username || !filePreview) ? 'gray' :'teal'}
+          size='lg'
+          width="100%">
           Upload
         </Button>
       </Box>

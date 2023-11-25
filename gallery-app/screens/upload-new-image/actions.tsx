@@ -8,6 +8,7 @@ interface IFormImage {
 }
 
 const useAction = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [file, setFile] = useState<File | string>();
   const [filePreview, setFilePreview] = useState<string | undefined>();
   const [imageDetail, setImageDetail] = useState<IFormImage>({
@@ -42,6 +43,11 @@ const useAction = () => {
   }
 
   const onSubmit = async () => {
+    setIsLoading(true);
+    if (!imageDetail.description || !imageDetail.username || !filePreview) {
+      return;
+    }
+    
     const cloudName = process?.env?.NEXT_PUBLIC_CLOUDINARY_CLOUDNAME;
 
     const data = new FormData();
@@ -76,10 +82,13 @@ const useAction = () => {
     } catch (err) {
       console.log('err: ', err);
     }
+
+    setIsLoading(false);
   }
 
   return {
     file,
+    isLoading,
     imageDetail,
     filePreview,
     onChange,
