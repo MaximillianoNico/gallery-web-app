@@ -6,7 +6,7 @@ interface IFormImage {
 }
 
 const useAction = () => {
-  const [file, setFile] = useState<File>();
+  const [file, setFile] = useState<File | string>();
   const [filePreview, setFilePreview] = useState<string | undefined>();
   const [imageDetail, setImageDetail] = useState<IFormImage>({
     username: "",
@@ -38,7 +38,25 @@ const useAction = () => {
   }
 
   const onSubmit = async () => {
+    const cloudName = "dm5cbnbea";
 
+    const data = new FormData();
+    if (file) data.append("file", file);
+    
+    data.append("upload_preset", "txackjwh");
+
+    try {
+      const request = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
+        { method: 'POST', body: data }
+      );
+
+      const response = await request.json();
+
+      console.log('response: ', response?.url);
+    } catch (err) {
+      console.log('err: ', err);
+    }
   }
 
   return {
