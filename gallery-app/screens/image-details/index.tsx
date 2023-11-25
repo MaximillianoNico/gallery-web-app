@@ -33,7 +33,7 @@ const Page:FC<IImageDetail> = (props) => {
             borderRadius='lg'
           />
         </Box>
-        <Comments />
+        <Comments imageId={props?.imageId} />
       </Box>
     </Box>
   )

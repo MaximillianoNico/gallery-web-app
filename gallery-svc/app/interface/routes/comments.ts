@@ -55,7 +55,7 @@ const CommentController = () => {
       const data = {
         uptime: process.uptime(),
         message: 'Ok',
-        error: comments ?? [],
+        data: comments ?? [],
         date: new Date()
       };
 
