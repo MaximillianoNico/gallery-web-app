@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Image, Box, Text } from '@chakra-ui/react'
+import { Image, Box, Text, Show } from '@chakra-ui/react'
 import ButtonBack from '@/components/button-back';
 
 interface IImageDetail {
@@ -10,9 +10,11 @@ interface IImageDetail {
 const Page:FC<IImageDetail> = (props) => {
   return (
     <Box>
-      <Box position="absolute" top={10} left={6}>
-        <ButtonBack />
-      </Box>
+      <Show breakpoint='(max-width: 400px)'>
+        <Box position="absolute" top={10} left={6}>
+          <ButtonBack />
+        </Box>
+      </Show>
       <Box
         display="grid"
         gridTemplateColumns={{

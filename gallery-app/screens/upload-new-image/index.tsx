@@ -1,5 +1,5 @@
 "use client"
-import { Box, Input, Text, Textarea, Button, Image } from '@chakra-ui/react'
+import { Box, Input, Text, Textarea, Button, Show } from '@chakra-ui/react'
 import { UploadSimple } from '@phosphor-icons/react';
 import ButtonBack from '@/components/button-back';
 import ImagePreview from '@/components/image-preview'
@@ -14,12 +14,13 @@ const Screen = () => {
     onSubmit
   } = useAction();
 
-  console.log('filePreview: ', filePreview);
   return (
     <Box>
-      <Box position="absolute" top={10} left={6}>
-        <ButtonBack />
-      </Box>
+      <Show breakpoint='(max-width: 400px)'>
+        <Box position="absolute" top={10} left={6}>
+          <ButtonBack />
+        </Box>
+      </Show>
       <Box
         marginTop={20}
         position='relative'

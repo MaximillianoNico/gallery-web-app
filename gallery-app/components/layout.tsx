@@ -17,16 +17,16 @@ interface INavBar {
 const NavBarDesktop: FC<INavBar> = (props) => {
   return (
     <Box display="grid" columnGap={4} alignItems="center" gridTemplateColumns="100px 100px auto 100px" marginBottom={6}>
-      <Box onClick={() => props?.onNavigate('/')} fontWeight="bold">
+      <Box cursor="pointer" onClick={() => props?.onNavigate('/')} fontWeight="bold">
         Home
       </Box>
-      <Box onClick={() => props?.onNavigate('/create')}>
+      <Box cursor="pointer" onClick={() => props?.onNavigate('/create')}>
         Create
       </Box>
-      <Box>
+      <Box cursor="pointer">
         <Input borderRadius={20} placeholder='Search' />
       </Box>
-      <Box>
+      <Box cursor="pointer">
         Avatar
       </Box>
     </Box>
