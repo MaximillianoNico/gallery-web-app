@@ -17,6 +17,9 @@ const Component:FC<IImages> = (props) => {
     <Box onClick={onOpenDetail}>
       <Image
         src={props?.imageUrl}
+        onError={(e: any) => {
+          e.target.src = "https://static.thenounproject.com/png/1583624-200.png"
+        }}
         alt='Green double couch with wooden legs'
         borderRadius='lg'
       />

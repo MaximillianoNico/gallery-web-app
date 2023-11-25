@@ -59,10 +59,14 @@ const ImagesController = () => {
   const addImages = async (req: Request, res: Response) => {
     const newImagesData = {
       owner: req?.body?.username,
-      imageUrl: req?.body?.imageUrl
+      imageUrl: req?.body?.imageUrl,
+      description: req?.body?.description
     }
 
     try {
+      if (!newImagesData.imageUrl) {
+        throw new Error("Image url is required")
+      }
       const newImageUpload = new Images(newImagesData);
       const row = await newImageUpload.save();
 
@@ -87,9 +91,9 @@ const ImagesController = () => {
     }
   }
 
+  router.post('/add', addImages);
   router.get('/', getImages)
   router.get('/detail/:id', getImageById);
-  router.post('/add', addImages);
 
   return router;
 }

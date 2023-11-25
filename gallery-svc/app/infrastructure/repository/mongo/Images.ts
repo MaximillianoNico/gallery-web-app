@@ -10,6 +10,9 @@ const tbl_images = new Schema({
   imageUrl: {
     type: String
   },
+  description: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: Date.now,

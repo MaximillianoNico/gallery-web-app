@@ -42,8 +42,8 @@ const Mock_Comment = [
 
 const Component = () => {
   return (
-    <Box position={"relative"}>
-      <Box height={360} overflow="scroll">
+    <Box position={"relative"} marginBottom={20}>
+      <Box height={300} overflow="scroll">
         <Text fontSize={32}>Comments</Text>
         {Mock_Comment.map(
           ({ username, createAt, text }) => (

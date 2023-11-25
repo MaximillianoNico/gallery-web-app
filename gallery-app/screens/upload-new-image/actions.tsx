@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import ImageService from '@/services/images';
+import { useToast } from '@chakra-ui/react'
 
 interface IFormImage {
   username: string;
@@ -12,6 +14,8 @@ const useAction = () => {
     username: "",
     description: ""
   })
+
+  const toast = useToast()
 
   const onUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e?.target?.files?.length) {
@@ -48,12 +52,27 @@ const useAction = () => {
     try {
       const request = await fetch(
         `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-        { method: 'POST', body: data }
+        {
+          method: 'POST',
+          body: data
+        }
       );
 
       const response = await request.json();
 
-      console.log('response: ', response?.url);
+      const [err, responseUpload] = await ImageService.uploadImage({
+        ...imageDetail,
+        imageUrl: response?.url
+      })
+
+      if (!err && responseUpload) {
+        toast({
+          title: 'Image Uploaded',
+          status: 'success',
+          duration: 1500,
+          isClosable: true,
+        })
+      }
     } catch (err) {
       console.log('err: ', err);
     }

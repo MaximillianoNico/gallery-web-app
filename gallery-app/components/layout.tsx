@@ -36,14 +36,16 @@ const NavBarDesktop: FC<INavBar> = (props) => {
 const StickyNavBar: FC<INavBar> = (props) => {
   return (
     <Box
+      zIndex={100}
       borderTop="1px solid #D9D9D9"
       display="grid"
       gridTemplateColumns="auto auto"
-      position="absolute"
+      position="fixed"
       bottom={0}
       left={0}
       right={0}
       padding={4}
+      backgroundColor="white"
     >
       <Box onClick={() => props?.onNavigate('/')} cursor="pointer" display="flex" justifyContent="center" alignItems="center">
         <House size={32} />
@@ -62,7 +64,7 @@ const Component: FC<ILayout> = ({ children }) => {
   const onNavigate = (pageName: string) => router.push(pageName);
 
   return (
-    <Box minHeight="100vh" padding={6}>
+    <Box minHeight="100vh" padding="6px 6px 10px 6px">
       {!isMobile && <NavBarDesktop onNavigate={onNavigate} />}
       {children}
       {isMobile && <StickyNavBar onNavigate={onNavigate} />}

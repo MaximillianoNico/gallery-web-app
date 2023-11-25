@@ -14,6 +14,33 @@ const getImages = async () => {
   }
 }
 
+interface IUploadImage {
+  username: string;
+  description: string;
+  imageUrl: string;
+}
+
+const uploadImage = async (payload: IUploadImage) => {
+  try {
+    const request = await fetch(
+      `${BASE_URL}/images/add`,
+      {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    const response = await request.json();
+
+    return [null, response]
+  } catch (err) {
+    return [err, null]
+  }
+}
+
 const getImageById = async (imageId: string) => {
   try {
     console.log('endpoint: ', `${BASE_URL}/images/detail/${imageId}`)
@@ -42,5 +69,6 @@ const getImageById = async (imageId: string) => {
 
 export default {
   getImages,
-  getImageById
+  getImageById,
+  uploadImage
 }
