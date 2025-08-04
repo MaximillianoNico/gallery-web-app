@@ -32,5 +32,5 @@ EXPOSE 3000
 CMD ["yarn", "start"]
  
 # Add labels
-LABEL maintainer="Your Name"
+LABEL maintainer="Maximilliano"
 LABEL version="1.0"

@@ -1,6 +1,5 @@
 {
   "name": "gallery-svc",
-  "packageManager": "yarn@3.1.1",
   "volta": {
     "node": "18.17.0",
     "yarn": "1.22.10"

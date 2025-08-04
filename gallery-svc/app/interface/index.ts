@@ -12,6 +12,7 @@ const Interface = ({ app }: IMainRoute) => {
   /**
    * Catch 404 and forward to error handle.
    */
+  /** @ts-ignore */
   app.use((req, res, next) => {
     let err = {
       message: new Error('Not Found'),

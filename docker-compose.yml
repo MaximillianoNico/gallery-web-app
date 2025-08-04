@@ -7,7 +7,7 @@ services:
     restart: always
     volumes:
       - mongo_data:/data/db
-  app:
+  svc:
     depends_on:
       - mongodb
     build: ./gallery-svc
@@ -18,6 +18,19 @@ services:
       PORT: 8080
       MONGO_URL: mongodb://mongodb:27017
       MONGO_INITDB_DATABASE: qoce-db
+    stdin_open: true
+    tty: true
+  gallery-app:
+    depends_on:
+      - svc
+    build: ./gallery-app
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
+      - NEXT_PUBLIC_CLOUDINARY_CLOUDNAME=dm5cbnbea
+      - NEXT_PUBLIC_CLOUDINARY_UPLOADPRESET=txackjwh
     stdin_open: true
     tty: true
     
